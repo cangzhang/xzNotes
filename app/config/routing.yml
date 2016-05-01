@@ -1,0 +1,4 @@
+notes:
+    resource: "@notesBundle/Controller/"
+    type:     annotation
+    prefix:   /
