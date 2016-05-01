@@ -2,3 +2,6 @@
 /var/bootstrap.php.cache
 /var/logs
 /var/cache
+/var/sessions/dev
+/var/sessions
+/src/notesBundle/Entity/*.php~
