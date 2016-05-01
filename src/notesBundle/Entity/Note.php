@@ -21,6 +21,36 @@ class Note
      */
     private $id;
 
+    /**
+     * @var int
+     * @ORM\Column(name="userId", type="integer")
+     */
+    private $userId;
+
+    /**
+     * @var string
+     * @ORM\Column(name="title", type="string")
+     */
+    private $title;
+
+    /**
+     * @var string
+     * @ORM\Column(name="content", type="string")
+     */
+    private $content;
+
+    /**
+     * @var datetime
+     * @ORM\Column(name="createAt", type="datetime")
+     */
+    private $creatAt;
+
+    /**
+     * @var datetime
+     * @ORM\Column(name="updateAt", type="datetime")
+     */
+    private $updateAt;
+
 
     /**
      * Get id
@@ -31,5 +61,126 @@ class Note
     {
         return $this->id;
     }
-}
 
+    /**
+     * Set userId
+     *
+     * @param integer $userId
+     *
+     * @return Note
+     */
+    public function setUserId($userId)
+    {
+        $this->userId = $userId;
+
+        return $this;
+    }
+
+    /**
+     * Get userId
+     *
+     * @return integer
+     */
+    public function getUserId()
+    {
+        return $this->userId;
+    }
+
+    /**
+     * Set title
+     *
+     * @param string $title
+     *
+     * @return Note
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set content
+     *
+     * @param string $content
+     *
+     * @return Note
+     */
+    public function setContent($content)
+    {
+        $this->content = $content;
+
+        return $this;
+    }
+
+    /**
+     * Get content
+     *
+     * @return string
+     */
+    public function getContent()
+    {
+        return $this->content;
+    }
+
+    /**
+     * Set creatAt
+     *
+     * @param \DateTime $creatAt
+     *
+     * @return Note
+     */
+    public function setCreatAt($creatAt)
+    {
+        if(!$this->getCreatAt()) {
+            $this->creatAt = new \DateTime();
+        }
+
+        return $this;
+    }
+
+    /**
+     * Get creatAt
+     *
+     * @return \DateTime
+     */
+    public function getCreatAt()
+    {
+        return $this->creatAt;
+    }
+
+    /**
+     * Set updateAt
+     *
+     * @param \DateTime $updateAt
+     *
+     * @return Note
+     */
+    public function setUpdateAt($updateAt)
+    {
+        $this->updateAt = new \DateTime();
+
+        return $this;
+    }
+
+    /**
+     * Get updateAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdateAt()
+    {
+        return $this->updateAt;
+    }
+}
