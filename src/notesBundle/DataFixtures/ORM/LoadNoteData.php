@@ -14,6 +14,7 @@ class LoadNoteData extends AbstractFixture implements OrderedFixtureInterface{
         $note1 ->setTitle('test')
                ->setContent("This is a test.")
                ->setCreatAt(new \DateTime('now'))
+               ->setUserId(1)
                ->setUpdateAt(new \DateTime('now'));
 
 //        $note1->setUserId($User);
@@ -21,7 +22,7 @@ class LoadNoteData extends AbstractFixture implements OrderedFixtureInterface{
         $em->persist($note1);
         $em->flush();
 
-        $this->addReference('note-note', $note1);
+//        $this->addReference('note-note', $note1);
 
     }
     public function getOrder()
