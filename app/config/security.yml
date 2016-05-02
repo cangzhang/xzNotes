@@ -1,11 +1,18 @@
 # To get started with security, check out the documentation:
 # http://symfony.com/doc/current/book/security.html
 security:
+    encoders:
+        FOS\UserBundle\Model\Userinterface:
+            algorithm: bcrypt
+            cost: 10
 
     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
     providers:
         in_memory:
             memory: ~
+
+        fos_userbundle:
+            id: fos_user.user_provider.username
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -22,3 +29,17 @@ security:
 
             # form_login: ~
             # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+
+        secured_area:
+                    pattern: ^/
+                    anonymous: ~
+                    form_login:
+                        provider: fos_userbundle
+                        csrf_token_generator: security.csrf.token_manager
+                    logout: true
+
+#    access_control:
+#            - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+#            - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+#            - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+#            - { path: ^/admin/, role: ROLE_ADMIN }
