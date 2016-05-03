@@ -143,7 +143,7 @@ class Note
      */
     public function setCreateAt($createAt)
     {
-        if(!$this->getCreatAt()) {
+        if(!$this->getCreateAt()) {
             $this->createAt = new \DateTime();
         }
 

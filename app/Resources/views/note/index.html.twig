@@ -22,7 +22,7 @@
                 <td>{{ note.userId }}</td>
                 <td>{{ note.title }}</td>
                 <td>{{ note.content }}</td>
-                <td>{% if note.creatAt %}{{ note.creatAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if note.createAt %}{{ note.createAt|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>{% if note.updateAt %}{{ note.updateAt|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>
                     <ul>
