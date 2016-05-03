@@ -18,8 +18,8 @@ class NoteType extends AbstractType
             ->add('userId')
             ->add('title')
             ->add('content')
-            ->add('creatAt', 'datetime')
-            ->add('updateAt', 'datetime')
+            ->add('createAt')
+            ->add('updateAt')
         ;
     }
     

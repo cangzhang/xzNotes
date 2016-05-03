@@ -40,13 +40,13 @@ class Note
     private $content;
 
     /**
-     * @var datetime
+     * @var \DateTime
      * @ORM\Column(name="createAt", type="datetime")
      */
-    private $creatAt;
+    private $createAt;
 
     /**
-     * @var datetime
+     * @var \DateTime
      * @ORM\Column(name="updateAt", type="datetime")
      */
     private $updateAt;
@@ -135,29 +135,29 @@ class Note
     }
 
     /**
-     * Set creatAt
+     * Set createAt
      *
-     * @param \DateTime $creatAt
+     * @param \DateTime $createAt
      *
      * @return Note
      */
-    public function setCreatAt($creatAt)
+    public function setCreateAt($createAt)
     {
         if(!$this->getCreatAt()) {
-            $this->creatAt = new \DateTime();
+            $this->createAt = new \DateTime();
         }
 
         return $this;
     }
 
     /**
-     * Get creatAt
+     * Get createAt
      *
      * @return \DateTime
      */
-    public function getCreatAt()
+    public function getCreateAt()
     {
-        return $this->creatAt;
+        return $this->createAt;
     }
 
     /**
@@ -183,4 +183,5 @@ class Note
     {
         return $this->updateAt;
     }
+
 }
