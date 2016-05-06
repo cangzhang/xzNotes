@@ -26,12 +26,10 @@
                 <td>{% if note.updateAt %}{{ note.updateAt|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>
                     <ul>
-                        <li>
-                            <a href="{{ path('note_show', { 'id': note.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('note_edit', { 'id': note.id }) }}">edit</a>
-                        </li>
+                        <section>
+                            <md-button>show</md-button>
+                            <md-button ng-href="{{ path('note_edit', { 'id': note.id }) }}">edit</md-button>
+                        </section>
                     </ul>
                 </td>
             </tr>

@@ -7,21 +7,24 @@
             Welcome!
         {% endblock %}
     </title>
-    {% block stylesheets %}
+    {% block stylesheet %}
         <link rel="stylesheet" href="{{ asset('bundles/notes/css/angular-material.css') }}">
-        <script src="{{ asset('bundles/notes/js/angular.js') }}"></script>
-        <script src="{{ asset('bundles/notes/js/angular-material.js') }}"></script>
-        <script src="{{ asset('bundles/notes/js/angular-animate.js') }}"></script>
-        <script src="{{ asset('bundles/notes/js/angular-messages.js') }}"></script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
     {% endblock %}
+
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
 </head>
-<body>
+<body ng-app="shell" ng-controller="ShellController">
 {% block body %}
-
 {% endblock %}
-{% block javascripts %}
 
+{% block javascript %}
+    <script src="{{ asset('bundles/notes/js/angular.js') }}"></script>
+    <script src="{{ asset('bundles/notes/js/angular-aria.js') }}"></script>
+    <script src="{{ asset('bundles/notes/js/angular-messages.js') }}"></script>
+    <script src="{{ asset('bundles/notes/js/angular-animate.js') }}"></script>
+    <script src="{{ asset('bundles/notes/controller/shell.js') }}"></script>
+    <script src="{{ asset('bundles/notes/js/angular-material.js') }}"></script>
 {% endblock %}
 </body>
 </html>
