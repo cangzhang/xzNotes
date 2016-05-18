@@ -3,6 +3,8 @@
 {% block body %}
     <h1>Note list</h1>
 
+        {[{ currentTitle }]}
+
     <table>
         <thead>
             <tr>
@@ -27,10 +29,11 @@
                 <td>
                     <ul>
                         <section>
-                            <md-button>show</md-button>
-                            <md-button ng-href="{{ path('note_edit', { 'id': note.id }) }}">edit</md-button>
+                            <md-button ng-href="{{ path('note_show', { 'id': note.id }) }}" class="md-raised">show</md-button>
+                            <md-button ng-href="{{ path('note_edit', { 'id': note.id }) }}" class="md-raised">edit</md-button>
                         </section>
                     </ul>
+
                 </td>
             </tr>
         {% endfor %}

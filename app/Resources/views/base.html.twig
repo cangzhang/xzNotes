@@ -7,24 +7,20 @@
             Welcome!
         {% endblock %}
     </title>
-    {% block stylesheet %}
-        <link rel="stylesheet" href="{{ asset('bundles/notes/css/angular-material.css') }}">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
-    {% endblock %}
 
+    <link rel="stylesheet" href="{{ asset('bundles/notes/css/angular-material.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
 </head>
-<body ng-app="shell" ng-controller="ShellController">
+<body ng-app="Shell" ng-controller="ShellController">
+
 {% block body %}
 {% endblock %}
 
-{% block javascript %}
     <script src="{{ asset('bundles/notes/js/angular.js') }}"></script>
     <script src="{{ asset('bundles/notes/js/angular-aria.js') }}"></script>
-    <script src="{{ asset('bundles/notes/js/angular-messages.js') }}"></script>
     <script src="{{ asset('bundles/notes/js/angular-animate.js') }}"></script>
-    <script src="{{ asset('bundles/notes/controller/shell.js') }}"></script>
     <script src="{{ asset('bundles/notes/js/angular-material.js') }}"></script>
-{% endblock %}
+    <script src="{{ asset('bundles/notes/controller/shell.js') }}"></script>
 </body>
 </html>
