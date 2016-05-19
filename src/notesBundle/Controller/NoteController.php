@@ -137,4 +137,17 @@ class NoteController extends Controller
             ->getForm()
         ;
     }
+
+    public function arrayExplode( array $arr ) {
+        $desArr = array();
+        foreach ( $arr as $e ) {
+            foreach ( $e as $value ) {
+                $temp = explode( ':', (string)$value );
+                print_r($temp);
+                $desArr[$temp[0]] = $temp[1];
+            }
+        }
+        return $desArr;
+    }
+
 }
