@@ -1,9 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Note list</h1>
-    <table>
-        <thead>
+    <div class="container">
+        <h1>Note list</h1>
+        <table>
+            <thead>
             <tr>
                 <th>Id</th>
                 <th>Userid</th>
@@ -13,39 +14,42 @@
                 <th>Updateat</th>
                 <th>Actions</th>
             </tr>
-        </thead>
-        <tbody>
-        {% for note in notes %}
-            <tr>
-                <td><a href="{{ path('note_show', { 'id': note.id }) }}">{{ note.id }}</a></td>
-                <td>{{ note.userId }}</td>
-                <td>{{ note.title }}</td>
-                <td>{{ note.content }}</td>
-                <td>{% if note.createAt %}{{ note.createAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if note.updateAt %}{{ note.updateAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>
-                    <ul>
-                        <section>
-                            <md-button ng-href="{{ path('note_show', { 'id': note.id }) }}" class="md-raised">show</md-button>
-                            <md-button ng-href="{{ path('note_edit', { 'id': note.id }) }}" class="md-raised">edit</md-button>
-                        </section>
-                    </ul>
+            </thead>
+            <tbody>
+            {% for note in notes %}
+                <tr>
+                    <td><a href="{{ path('note_show', { 'id': note.id }) }}">{{ note.id }}</a></td>
+                    <td>{{ note.userId }}</td>
+                    <td>{{ note.title }}</td>
+                    <td>{{ note.content }}</td>
+                    <td>{% if note.createAt %}{{ note.createAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                    <td>{% if note.updateAt %}{{ note.updateAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                    <td>
+                        <ul>
+                            <section>
+                                <md-button ng-href="{{ path('note_show', { 'id': note.id }) }}" class="md-raised">show
+                                </md-button>
+                                <md-button ng-href="{{ path('note_edit', { 'id': note.id }) }}" class="md-raised">edit
+                                </md-button>
+                            </section>
+                        </ul>
 
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
 
-    <div class="addBtn">
-        <md-button class="md-button addNote" value="Add New" ng-href="{{ path('note_new') }}">
-            <md-icon class="addIcon" md-svg-src="content:add_circle_outline"></md-icon>
-            Add
-        </md-button>
+        <div class="addBtn">
+            <md-button class="md-button addNote" value="Add New" ng-href="{{ path('note_new') }}">
+                <md-icon class="addIcon" md-svg-src="content:add_circle_outline"></md-icon>
+                Add
+            </md-button>
+        </div>
+        {#    <ul>
+                <li>
+                    <a href="{{ path('note_new') }}">Create a new entry</a>
+                </li>
+            </ul>#}
     </div>
-{#    <ul>
-        <li>
-            <a href="{{ path('note_new') }}">Create a new entry</a>
-        </li>
-    </ul>#}
 {% endblock %}
