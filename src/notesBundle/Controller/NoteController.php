@@ -27,6 +27,12 @@ class NoteController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $notes = $em->getRepository('notesBundle:Note')->findAll();
+        
+        echo $notes->toJson();
+        
+        
+        echo json_encode($notes);
+        exit();
 
         return $this->render('note/index.html.twig', array(
             'notes' => $notes,

@@ -19,37 +19,37 @@ class Note
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    public $id;
 
     /**
      * @var int
      * @ORM\Column(name="userId", type="integer")
      */
-    private $userId;
+    public $userId;
 
     /**
      * @var string
      * @ORM\Column(name="title", type="string")
      */
-    private $title;
+    public $title;
 
     /**
      * @var string
      * @ORM\Column(name="content", type="string")
      */
-    private $content;
+    public $content;
 
     /**
      * @var \DateTime
      * @ORM\Column(name="createAt", type="datetime")
      */
-    private $createAt;
+    public $createAt;
 
     /**
      * @var \DateTime
      * @ORM\Column(name="updateAt", type="datetime")
      */
-    private $updateAt;
+    public $updateAt;
 
 
     /**
