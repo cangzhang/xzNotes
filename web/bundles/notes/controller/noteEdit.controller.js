@@ -1,4 +1,4 @@
-angular.module('NoteEditor', ['ngMaterial'])
+angular.module('Shell', ['ngMaterial'])
     .config(function ( $interpolateProvider, $mdIconProvider) {
         $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
     })
