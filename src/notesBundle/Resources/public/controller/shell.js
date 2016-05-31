@@ -1,6 +1,7 @@
 angular.module('Shell', ['ngMaterial'])
-    .config(function ($interpolateProvider) {
+    .config(function ( $interpolateProvider, $mdIconProvider) {
         $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
+        $mdIconProvider.defaultIconSet('bundles/notes/img/mdi.svg');
     })
     .controller('ShellController', ShellController);
 
