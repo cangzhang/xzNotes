@@ -4,9 +4,9 @@ angular.module('Shell', ['ngMaterial'])
     })
     .controller('ShellController', ShellController);
 
-ShellController$inject = ['$scope', '$compile', '$rootScope', '$mdDialog', '$mdToast'];
+ShellController$inject = ['$scope', '$http', '$compile', '$rootScope', '$mdDialog', '$mdToast'];
 
-function ShellController($scope, $compile, $rootScope, $mdDialog, $mdToast) {
+function ShellController($scope, $http, $compile, $rootScope, $mdDialog, $mdToast) {
     $http.get('/api/notes')
         .success(function(data, status) {
             $scope.allNotes = data;
