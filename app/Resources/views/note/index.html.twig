@@ -2,7 +2,6 @@
 
 {% block body %}
     <div class="container">
-        {#<pre>{[{ notes | json_encode }]}</pre>#}
         <h1>Note list</h1>
         <table>
             <thead>
@@ -34,10 +33,5 @@
                 Add
             </md-button>
         </div>
-        {#    <ul>
-                <li>
-                    <a href="{{ path('note_new') }}">Create a new entry</a>
-                </li>
-            </ul>#}
     </div>
 {% endblock %}

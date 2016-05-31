@@ -35,22 +35,7 @@ class NoteController extends Controller
      */
     public function newAction(Request $request)
     {
-        $note = new Note();
-        $form = $this->createForm('notesBundle\Form\NoteType', $note);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($note);
-            $em->flush();
-
-            return $this->redirectToRoute('note_show', array('id' => $note->getId()));
-        }
-
-        return $this->render('note/new.html.twig', array(
-            'note' => $note,
-            'form' => $form->createView(),
-        ));
+        return $this->render('note/new.html.twig');
     }
 
     /**
