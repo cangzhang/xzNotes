@@ -1,7 +1,10 @@
-angular.module('Shell', ['ngMaterial'])
-    .config(function ( $interpolateProvider) {
-        $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
-    })
+angular.module('Shell', [
+    'ngMaterial'
+]).config(function ( $interpolateProvider) {
+    $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
+});
+
+angular.module('Shell')
     .controller('ShellController', ShellController);
 
 ShellController.$inject = ['$scope', 'NotesData', '$mdDialog', '$mdToast'];
@@ -13,10 +16,7 @@ function ShellController($scope, NotesData, $mdDialog, $mdToast, $mdMedia) {
         });
 }
 
-angular.module('Shell', ['ngMaterial'])
-    .config(function ( $interpolateProvider) {
-        $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
-    })
+angular.module('Shell')
     .controller('NoteEditController', NoteEditController);
 
 NoteEditController.$inject = ['$scope', 'NotesData','$compile', '$rootScope', '$mdDialog', '$mdToast'];
@@ -27,8 +27,7 @@ function NoteEditController($scope, NotesData, $compile, $rootScope, $mdDialog, 
 
 
 
-angular
-    .module('Shell')
+angular.module('Shell')
     .factory('NotesData', NotesData);
 
 NotesData.$inject = ['$http', '$mdDialog', '$mdToast'];
