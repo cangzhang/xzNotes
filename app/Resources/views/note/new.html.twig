@@ -1,38 +1,33 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Note creation</h1>
-
-    <div ng-controller="NoteEditController" layout="column" ng-cloak class="md-inline-form">
-
-        <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding="">
-            <div>
-                <md-input-container>
-                    <label>Title</label>
-                    <input ng-model="formData.Title">
-                </md-input-container>
-            </div>
-        </md-content>
-
-        <md-content layout-padding="">
-            <div>
-                <form name="userForm">
-
-                    <div layout-gt-xs="row">
-                        <md-input-container class="md-block" flex-gt-xs="">
-                            <label>Content</label>
-                            <input ng-model="formData.Content">
-                        </md-input-container>
-                </form>
-            </div>
-        </md-content>
-
+    <div ng-controller="NoteEditController">
+        <h1>Note creation</h1>
+        <div layout="column" ng-cloak class="md-inline-form">
+            <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding="">
+                <div>
+                    <md-input-container>
+                        <label>Title</label>
+                        <input ng-model="formData.Title">
+                    </md-input-container>
+                </div>
+            </md-content>
+            <md-content layout-padding="">
+                <div>
+                    <form name="userForm">
+                        <div layout-gt-xs="row">
+                            <md-input-container class="md-block" flex-gt-xs="">
+                                <label>Content</label>
+                                <input ng-model="formData.Content">
+                            </md-input-container>
+                    </form>
+                </div>
+            </md-content>
+        </div>
+        <div class="">
+            <md-button class="md-raised addNote" value="Add New" ng-href="{{ path('note_index') }}">
+                <i class="mdi mdi-backspace"></i>Back
+            </md-button>
+        </div>
     </div>
-
-    <div class="">
-        <md-button class="md-raised addNote" value="Add New" ng-href="{{ path('note_index') }}">
-            <i class="mdi mdi-backspace"></i>Back
-        </md-button>
-    </div>
-
 {% endblock %}

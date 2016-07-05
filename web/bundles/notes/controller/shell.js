@@ -1,14 +1,46 @@
 angular.module('Shell', ['ngMaterial'])
-    .config(function ( $interpolateProvider, $mdIconProvider) {
+    .config(function ( $interpolateProvider) {
         $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
     })
     .controller('ShellController', ShellController);
 
-ShellController$inject = ['$scope', '$http', '$compile', '$rootScope', '$mdDialog', '$mdToast'];
+ShellController.$inject = ['$scope', 'NotesData', '$mdDialog', '$mdToast'];
 
-function ShellController($scope, $http, $compile, $rootScope, $mdDialog, $mdToast) {
-    $http.get('/api/notes')
-        .success(function(data, status) {
+function ShellController($scope, NotesData, $mdDialog, $mdToast, $mdMedia) {
+    NotesData.getAllNotes()
+        .success(function (data) {
             $scope.allNotes = data;
         });
+}
+
+angular.module('Shell', ['ngMaterial'])
+	.config(function ( $interpolateProvider) {
+		$interpolateProvider.startSymbol('{[{').endSymbol('}]}');
+	})
+	.controller('NoteEditController', NoteEditController);
+
+NoteEditController.$inject = ['$scope', 'NotesData','$compile', '$rootScope', '$mdDialog', '$mdToast'];
+
+function NoteEditController($scope, NotesData, $compile, $rootScope, $mdDialog, $mdToast) {
+	$scope.formData = {};
+}
+
+
+
+angular
+    .module('Shell')
+    .factory('NotesData', NotesData);
+
+NotesData.$inject = ['$http', '$mdDialog', '$mdToast'];
+
+function NotesData($http, $mdDialog, $mdToast) {
+    var service = {
+        getAllNotes	: getAllNotes
+    };
+
+    return service;
+
+    function getAllNotes() {
+        return $http.get('/api/notes');
+    }
 }

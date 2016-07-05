@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="container">
+    <div ng-controller="ShellController">
         <h1>Note list</h1>
         <table>
             <thead>
@@ -16,22 +16,16 @@
             </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="note in allNotes">
-                    <td>{[{ note.id }]}</td>
-                    <td>{[{ note.userId }]}</td>
-                    <td>{[{ note.title }]}</td>
-                    <td>{[{ note.content }]}</td>
-                    <td>{[{ note.createAt.date | date:(MM/DD/YYYY) }]}</td>
-                    <td>{[{ note.updateAt.date | date:(MM/DD/YYYY) }]}</td>
-                </tr>
+            <tr ng-repeat="note in allNotes">
+                <td>{[{ note.id }]}</td>
+                <td>{[{ note.userId }]}</td>
+                <td>{[{ note.title }]}</td>
+                <td>{[{ note.content }]}</td>
+                <td>{[{ note.createAt.date | date:(MM/DD/YYYY) }]}</td>
+                <td>{[{ note.updateAt.date | date:(MM/DD/YYYY) }]}</td>
+            </tr>
             </tbody>
         </table>
-
-        <div class="addBtn">
-            <md-button class="md-button addNote" value="Add New" ng-href="{{ path('note_new') }}">
-                <md-icon class="addIcon" md-svg-src="mdi-table-edit"></md-icon>
-                Add
-            </md-button>
-        </div>
     </div>
+
 {% endblock %}
