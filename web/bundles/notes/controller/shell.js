@@ -23,6 +23,14 @@ NoteEditController.$inject = ['$scope', 'NotesData','$compile', '$rootScope', '$
 
 function NoteEditController($scope, NotesData, $compile, $rootScope, $mdDialog, $mdToast) {
 	$scope.formData = {};
+
+	$scope.saveNote = function() {
+	    var requestData = angular.copy($scope.formData);
+	    NotesData.createNote(requestData)
+            .success(function(data) {
+                $mdToast.show('New Note ' + $scope.formData.Title + ' has been created.');
+        });
+    }
 }
 
 
@@ -34,12 +42,17 @@ NotesData.$inject = ['$http', '$mdDialog', '$mdToast'];
 
 function NotesData($http, $mdDialog, $mdToast) {
     var service = {
-        getAllNotes	: getAllNotes
+        getAllNotes	: getAllNotes,
+        createNote  : createNote
     };
 
     return service;
 
     function getAllNotes() {
         return $http.get('/api/notes');
+    }
+
+    function createNote(data) {
+        return $http.post('/api/notes/create', data);
     }
 }

@@ -71,8 +71,7 @@ class ApiNotesController extends Controller
 
         $note->title = $noteData['Title'];
         $note->content = $noteData['Content'];
-
-        print_r($note);
+//        print_r($note);
 
         $em = $this->getDoctrine()->getManager();
         $em->persist($note);

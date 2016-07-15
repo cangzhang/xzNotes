@@ -26,7 +26,10 @@
         </div>
         <div class="">
             <md-button class="md-raised addNote" value="Add New" ng-href="{{ path('note_index') }}">
-                <i class="mdi mdi-backspace"></i>Back
+                Back
+            </md-button>
+            <md-button class="md-raised addNote" value="Add New" ng-click="saveNote()">
+                Save
             </md-button>
         </div>
     </div>
