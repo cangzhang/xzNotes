@@ -5,15 +5,36 @@ angular.module('Shell', [
 });
 
 angular.module('Shell')
-    .controller('ShellController', ShellController);
+	.config(config);
+function config($mdIconProvider){
+	$mdIconProvider
+		.iconSet('actions', "/bundles/notes/img/icons/actions/defs/svg/sprite.defs.svg")
+		.iconSet('alert', "/bundles/notes/img/icons/alert/defs/svg/sprite.defs.svg")
+		.iconSet('av', "/bundles/notes/img/icons/av/defs/svg/sprite.defs.svg")
+		.iconSet('communication', "/bundles/notes/img/icons/communication/defs/svg/sprite.defs.svg")
+		.iconSet('content', "/bundles/notes/img/icons/content/defs/svg/sprite.defs.svg")
+		.iconSet('device', "/bundles/notes/img/icons/device/defs/svg/sprite.defs.svg")
+		.iconSet('editor', "/bundles/notes/img/icons/editor/defs/svg/sprite.defs.svg")
+		.iconSet('file', "/bundles/notes/img/icons/file/defs/svg/sprite.defs.svg")
+		.iconSet('hardware', "/bundles/notes/img/icons/hardware/defs/svg/sprite.defs.svg")
+		.iconSet('image', "/bundles/notes/img/icons/image/defs/svg/sprite.defs.svg")
+		.iconSet('maps', "/bundles/notes/img/icons/maps/defs/svg/sprite.defs.svg")
+		.iconSet('navigation', "/bundles/notes/img/icons/navigation/defs/svg/sprite.defs.svg")
+		.iconSet('notification', "/bundles/notes/img/icons/notification/defs/svg/sprite.defs.svg")
+		.iconSet('social', "/bundles/notes/img/icons/social/defs/svg/sprite.defs.svg")
+		.iconSet('toggle', "/bundles/notes/img/icons/toggle/defs/svg/sprite.defs.svg");
+}
+
+angular.module('Shell')
+	.controller('ShellController', ShellController);
 
 ShellController.$inject = ['$scope', 'NotesData', '$mdDialog', '$mdToast'];
 
 function ShellController($scope, NotesData, $mdDialog, $mdToast, $mdMedia) {
-    NotesData.getAllNotes()
-        .success(function (data) {
-            $scope.allNotes = data;
-        });
+	NotesData.getAllNotes()
+		.success(function (data) {
+			$scope.allNotes = data;
+		});
 }
 
 angular.module('Shell')
@@ -23,36 +44,23 @@ NoteEditController.$inject = ['$scope', 'NotesData','$compile', '$rootScope', '$
 
 function NoteEditController($scope, NotesData, $compile, $rootScope, $mdDialog, $mdToast) {
 	$scope.formData = {};
-
-	$scope.saveNote = function() {
-	    var requestData = angular.copy($scope.formData);
-	    NotesData.createNote(requestData)
-            .success(function(data) {
-                $mdToast.show('New Note ' + $scope.formData.Title + ' has been created.');
-        });
-    }
 }
 
 
 
 angular.module('Shell')
-    .factory('NotesData', NotesData);
+	.factory('NotesData', NotesData);
 
 NotesData.$inject = ['$http', '$mdDialog', '$mdToast'];
 
 function NotesData($http, $mdDialog, $mdToast) {
-    var service = {
-        getAllNotes	: getAllNotes,
-        createNote  : createNote
-    };
+	var service = {
+		getAllNotes	: getAllNotes
+	};
 
-    return service;
+	return service;
 
-    function getAllNotes() {
-        return $http.get('/api/notes');
-    }
-
-    function createNote(data) {
-        return $http.post('/api/notes/create', data);
-    }
+	function getAllNotes() {
+		return $http.get('/api/notes');
+	}
 }

@@ -23,6 +23,16 @@
                 <td>{[{ note.content }]}</td>
                 <td>{[{ note.createAt.date | date:(MM/DD/YYYY) }]}</td>
                 <td>{[{ note.updateAt.date | date:(MM/DD/YYYY) }]}</td>
+                <td>
+                    <md-button>
+                        <md-icon md-svg-src="editor:mode_edit" aria-label="Edit"></md-icon>
+                        Edit
+                    </md-button>
+                    <md-button>
+                        <md-icon md-svg-src="actions:delete" aria-label="Delete"></md-icon>
+                        Delete
+                    </md-button>
+                </td>
             </tr>
             </tbody>
         </table>
