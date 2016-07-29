@@ -17,11 +17,7 @@ use Symfony\Component\Validator\Constraints\DateTime;
  */
 class ApiNotesController extends Controller
 {
-    /**
-     * @Route("/")
-     * @Method("GET")
-     */
-    public function index()
+    /*public function index()
     {
         $em = $this->getDoctrine()->getManager();
         $notes = $em->getRepository('notesBundle:Note')->findAll();
@@ -31,16 +27,17 @@ class ApiNotesController extends Controller
         $response->headers->set('Content-Type', 'application/json');
 
         return $response;
-    }
+    }*/
 
     /**
-     * @Route("/user/{userId}")
+     * @Route("/")
      * @Method("GET")
-     * @param $userId
      * @return Response
      */
-    public function userNotesIndex($userId)
+    public function userNotesIndex()
     {
+	    $user = $this->get('security.token_storage')->getToken()->getUser();
+	    $userId = $user->id;
         $em = $this->getDoctrine()->getManager();
         $userNotes = $em->getRepository('notesBundle:Note')->findBy(
             array('userId' => $userId)

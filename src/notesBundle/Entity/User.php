@@ -16,7 +16,7 @@ class User extends BaseUser {
      * @ORM\Column(type="integer", nullable=false)
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $id;
+    public $id;
 
     public function __construct() {
         parent::__construct();
