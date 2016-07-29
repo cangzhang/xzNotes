@@ -4,5 +4,6 @@
 /var/cache
 /var/sessions/dev
 /var/sessions
-/src/notesBundle/Entity/*.php~
 /node_modules
+/vendor
+vendor
