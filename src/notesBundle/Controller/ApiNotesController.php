@@ -17,18 +17,6 @@ use Symfony\Component\Validator\Constraints\DateTime;
  */
 class ApiNotesController extends Controller
 {
-    /*public function index()
-    {
-        $em = $this->getDoctrine()->getManager();
-        $notes = $em->getRepository('notesBundle:Note')->findAll();
-
-        $response = new JsonResponse();
-        $response->setData($notes);
-        $response->headers->set('Content-Type', 'application/json');
-
-        return $response;
-    }*/
-
     /**
      * @Route("/")
      * @Method("GET")
@@ -51,6 +39,27 @@ class ApiNotesController extends Controller
     }
 
     /**
+     * @Route("/{noteId}/content")
+     * @Method("GET")
+     * @param $noteId
+     * @return JsonResponse
+     */
+    public function getOneNote($noteId) {
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $userId = $user->id;
+        $em = $this->getDoctrine()->getManager();
+        $userNote = $em->getRepository('notesBundle:Note')->findBy(
+            array('userId' => $userId,
+                'id' => $noteId));
+
+        $response = new JsonResponse();
+        $response->setData($userNote);
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
+    }
+
+    /**
      * @Route("/create")
      * @Method("POST")
      * @param Request $request
@@ -65,10 +74,8 @@ class ApiNotesController extends Controller
         $note->setUpdateAt(new \DateTime());
 
         $noteData = json_decode($request->getContent(), true);
-
         $note->title = $noteData['Title'];
         $note->content = $noteData['Content'];
-//        print_r($note);
 
         $em = $this->getDoctrine()->getManager();
         $em->persist($note);
@@ -81,7 +88,7 @@ class ApiNotesController extends Controller
     }
 
     /**
-     * @Route("/update/{$noteId}")
+     * @Route("/update/{noteId}")
      * @Method("PUT")
      * @param Request $request
      * @param $noteId

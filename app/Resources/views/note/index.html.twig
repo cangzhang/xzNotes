@@ -1,8 +1,18 @@
 {% extends '@notes/layout.html.twig' %}
 
+{% block title %}
+    Notes List
+{% endblock %}
+
 {% block body %}
     <div ng-controller="ShellController">
-        <h1>Note list</h1>
+        <h1>Notes list</h1>
+        <div class="createNew">
+            <md-button class="md-raised addNote" value="Add New" ng-href="{{ path('note_new') }}">
+                <md-icon md-svg-src="content:add_circle_outline"></md-icon>
+                Create
+            </md-button>
+        </div>
         <table>
             <thead>
             <tr>
