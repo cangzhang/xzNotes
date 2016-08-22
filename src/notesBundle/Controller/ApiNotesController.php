@@ -44,7 +44,8 @@ class ApiNotesController extends Controller
      * @param $noteId
      * @return JsonResponse
      */
-    public function getOneNote($noteId) {
+    public function getOneNote($noteId)
+    {
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $userId = $user->id;
         $em = $this->getDoctrine()->getManager();
@@ -67,7 +68,8 @@ class ApiNotesController extends Controller
      */
     public function store(Request $request)
     {
-        $userId = 2;
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $userId = $user->id;
         $note = new Note();
         $note->setUserId($userId);
         $note->setCreateAt(new \DateTime());
@@ -95,7 +97,8 @@ class ApiNotesController extends Controller
      */
     public function update(Request $request, $noteId)
     {
-        $userId = 2;
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $userId = $user->id;
         $note = new Note();
 
     }
