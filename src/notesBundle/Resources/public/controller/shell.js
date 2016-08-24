@@ -57,10 +57,12 @@ function NoteEditController($scope, NotesData, $compile, $rootScope, $mdDialog, 
                 $mdToast.show(
                     $mdToast.simple()
                         .parent(document.querySelectorAll('#editNote'))
-                        .position('bottom right')
+                        .position('top right')
                         .textContent('Note ' + $scope.formData.title + ' has been created.')
-                        .hideDelay(1500));
-                window.location = '/note';
+                        .hideDelay(1500))
+                        .then(function () {
+                            window.location = '/note';
+                        });
             });
     };
     $scope.updateNote = function () {
@@ -71,10 +73,12 @@ function NoteEditController($scope, NotesData, $compile, $rootScope, $mdDialog, 
                 $mdToast.show(
                     $mdToast.simple()
                         .parent(document.querySelectorAll('#editNote'))
-                        .position('bottom right')
+                        .position('top right')
                         .textContent('Note ' + $scope.formData.title + ' has been updated.')
-                        .hideDelay(1500));
-                window.location = '/note';
+                        .hideDelay(1500))
+                    .then(function () {
+                        window.location = '/note';
+                    });
             });
     };
 }
