@@ -54,7 +54,13 @@ function NoteEditController($scope, NotesData, $compile, $rootScope, $mdDialog, 
     $scope.createNote = function () {
         NotesData.createNote($scope.formData)
             .success(function () {
-                $mdToast.show($mdToast.simple().textContent('Note ' + $scope.formData.Title + ' has been created.'));
+                $mdToast.show(
+                    $mdToast.simple()
+                        .parent(document.querySelectorAll('#editNote'))
+                        .position('bottom right')
+                        .textContent('Note ' + $scope.formData.title + ' has been created.')
+                        .hideDelay(1500));
+                window.location = '/note';
             });
     };
     $scope.updateNote = function () {
@@ -62,7 +68,13 @@ function NoteEditController($scope, NotesData, $compile, $rootScope, $mdDialog, 
         NotesData.updateNote($scope.noteId, updateData)
             .success(function (data) {
                 $scope.formData = angular.copy(updateData);
-                $mdToast.show();
+                $mdToast.show(
+                    $mdToast.simple()
+                        .parent(document.querySelectorAll('#editNote'))
+                        .position('bottom right')
+                        .textContent('Note ' + $scope.formData.title + ' has been updated.')
+                        .hideDelay(1500));
+                window.location = '/note';
             });
     };
 }

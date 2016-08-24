@@ -76,6 +76,7 @@ class ApiNotesController extends Controller
         $response = new Response();
         $response->setStatusCode(Response::HTTP_OK);
         $response->headers->set('Content-Type', 'application/json');
+        return $response;
     }
 
     /**
