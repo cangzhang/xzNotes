@@ -34,7 +34,7 @@
                 <td>{[{ note.createAt.date | date:(MM/DD/YYYY) }]}</td>
                 <td>{[{ note.updateAt.date | date:(MM/DD/YYYY) }]}</td>
                 <td>
-                    <md-button>
+                    <md-button ng-href="/note/{[{ note.id }]}/edit">
                         <md-icon md-svg-src="editor:mode_edit" aria-label="Edit"></md-icon>
                         Edit
                     </md-button>

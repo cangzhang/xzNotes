@@ -44,10 +44,25 @@ NoteEditController.$inject = ['$scope', 'NotesData', '$compile', '$rootScope', '
 
 function NoteEditController($scope, NotesData, $compile, $rootScope, $mdDialog, $mdToast) {
     $scope.formData = {};
+    $scope.noteId = parseInt(window.location.href.split('/')[4]);
+    if ($scope.noteId) {
+        NotesData.getNote($scope.noteId)
+            .success(function (data) {
+                $scope.formData = angular.copy(data);
+            });
+    }
     $scope.createNote = function () {
         NotesData.createNote($scope.formData)
             .success(function () {
                 $mdToast.show($mdToast.simple().textContent('Note ' + $scope.formData.Title + ' has been created.'));
+            });
+    };
+    $scope.updateNote = function () {
+        var updateData = angular.copy($scope.formData);
+        NotesData.updateNote($scope.noteId, updateData)
+            .success(function (data) {
+                $scope.formData = angular.copy(updateData);
+                $mdToast.show();
             });
     };
 }
@@ -61,7 +76,9 @@ NotesData.$inject = ['$http', '$mdDialog', '$mdToast'];
 function NotesData($http, $mdDialog, $mdToast) {
     var service = {
         getAllNotes: getAllNotes,
-        createNote : createNote
+        createNote : createNote,
+        getNote    : getNote,
+        updateNote : updateNote
     };
 
     return service;
@@ -69,7 +86,16 @@ function NotesData($http, $mdDialog, $mdToast) {
     function getAllNotes() {
         return $http.get('/api/notes');
     }
+
     function createNote(data) {
         return $http.post('/api/notes/create', data);
+    }
+
+    function getNote(noteId) {
+        return $http.get('/api/notes/' + noteId + '/content');
+    }
+
+    function updateNote(noteId, data) {
+        return $http.put('/api/notes/' + noteId + '/edit', data);
     }
 }

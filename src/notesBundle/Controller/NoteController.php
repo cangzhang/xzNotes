@@ -48,4 +48,14 @@ class NoteController extends Controller
         return $this->render('note/show.html.twig');
     }
 
+    /**
+     * @Route("/{id}/edit", name="note_edit")
+     * @Method("GET")
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function updateNote()
+    {
+        return $this->render('note/edit.html.twig');
+    }
+
 }

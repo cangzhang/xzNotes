@@ -30,12 +30,7 @@ class ApiNotesController extends Controller
         $userNotes = $em->getRepository('notesBundle:Note')->findBy(
             array('userId' => $userId)
         );
-
-        $response = new JsonResponse();
-        $response->setData($userNotes);
-        $response->headers->set('Content-Type', 'application/json');
-
-        return $response;
+        return $this->json($userNotes);
     }
 
     /**
@@ -52,12 +47,7 @@ class ApiNotesController extends Controller
         $userNote = $em->getRepository('notesBundle:Note')->findBy(
             array('userId' => $userId,
                 'id' => $noteId));
-
-        $response = new JsonResponse();
-        $response->setData($userNote);
-        $response->headers->set('Content-Type', 'application/json');
-
-        return $response;
+        return $this->json($userNote[0]);
     }
 
     /**
@@ -76,8 +66,8 @@ class ApiNotesController extends Controller
         $note->setUpdateAt(new \DateTime());
 
         $noteData = json_decode($request->getContent(), true);
-        $note->title = $noteData['Title'];
-        $note->content = $noteData['Content'];
+        $note->title = $noteData['title'];
+        $note->content = $noteData['content'];
 
         $em = $this->getDoctrine()->getManager();
         $em->persist($note);
@@ -86,21 +76,36 @@ class ApiNotesController extends Controller
         $response = new Response();
         $response->setStatusCode(Response::HTTP_OK);
         $response->headers->set('Content-Type', 'application/json');
-        return $response;
     }
 
     /**
-     * @Route("/update/{noteId}")
+     * @Route("/{noteId}/edit")
      * @Method("PUT")
      * @param Request $request
      * @param $noteId
+     * @return Response
      */
     public function update(Request $request, $noteId)
     {
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $userId = $user->id;
-        $note = new Note();
 
+        $em = $this->getDoctrine()->getManager();
+        $userNote = $em->getRepository('notesBundle:Note')->findBy(
+            array('userId' => $userId,
+                  'id' => $noteId));
+        $noteData = json_decode($request->getContent(), true);
+        $userNote[0]->title = $noteData['title'];
+        $userNote[0]->content = $noteData['content'];
+        $userNote[0]->updateAt = new \DateTime();
+
+        $em->persist($userNote[0]);
+        $em->flush();
+
+        $response = new Response();
+        $response->setStatusCode(Response::HTTP_OK);
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
     }
 
 }
