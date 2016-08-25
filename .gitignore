@@ -8,3 +8,4 @@
 /vendor
 vendor
 /app/config/parameters.yml
+web/assets/
