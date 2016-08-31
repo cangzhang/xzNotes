@@ -12,17 +12,17 @@
         <h3>Inspire your mind</h3>
     </hgroup>
     <form action="{{ path("fos_user_security_check") }}" method="post">
-        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
-        <div class="group">
-            <md-input-container>
-                <label for="username">Username</label>
-                <input type="text" id="username" name="_username" required type="text" value="{{ last_username }}"/>
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+        <div class="group" flex>
+            <md-input-container class="loginInput" flex>
+                <label>Username</label>
+                <input id="username" name="_username" required value="{{ last_username }}">
             </md-input-container>
         </div>
         <div class="group">
-            <md-input-container>
+            <md-input-container class="loginInput" flex>
                 <label for="password">Password</label>
-                <input type="password" id="password" name="_password" required="required"/>
+                <input type="password" id="password" name="_password" required="required">
             </md-input-container>
         </div>
         <md-checkbox for="remember_me" aria-label="Remember me">Remember me</md-checkbox>
