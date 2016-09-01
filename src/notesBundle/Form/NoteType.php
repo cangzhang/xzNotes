@@ -19,8 +19,7 @@ class NoteType extends AbstractType
             ->add('title')
             ->add('content')
             ->add('createAt')
-            ->add('updateAt')
-        ;
+            ->add('updateAt');
     }
     
     /**

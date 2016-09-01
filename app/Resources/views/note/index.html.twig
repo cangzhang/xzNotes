@@ -8,20 +8,19 @@
     <div class="editNote" ng-controller="ShellController">
         <h1>Notes list</h1>
         <div class="createNew">
-            <md-button class="md-raised addNote" value="Add New" ng-href="{{ path('note_new') }}">
-                <md-icon md-svg-src="content:add_circle_outline"></md-icon>
-                Create
+            <md-button class="md-icon-button md-primary addNote" aria-label="Create Note" ng-href="{{ path('note_new') }}">
+                <md-icon md-svg-src="content:add_circle_outline" title="Create Note"></md-icon>
             </md-button>
         </div>
         <table>
             <thead>
             <tr>
                 <th>Id</th>
-                <th>Userid</th>
+                <th>User ID</th>
                 <th>Title</th>
                 <th>Content</th>
-                <th>Creatat</th>
-                <th>Updateat</th>
+                <th>Create</th>
+                <th>Update</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -31,8 +30,8 @@
                 <td>{[{ note.userId }]}</td>
                 <td>{[{ note.title }]}</td>
                 <td>{[{ note.content }]}</td>
-                <td>{[{ note.createAt.date | date:(MM/DD/YYYY) }]}</td>
-                <td>{[{ note.updateAt.date | date:(MM/DD/YYYY) }]}</td>
+                <td>{[{ note.createAt.date | date:'MM/dd/yyyy @ h:mma' }]}</td>
+                <td>{[{ note.updateAt.date | date:'MM/dd/yyyy @ h:mma' }]}</td>
                 <td>
                     <md-button ng-href="/note/{[{ note.id }]}/edit">
                         <md-icon md-svg-src="editor:mode_edit" aria-label="Edit"></md-icon>
