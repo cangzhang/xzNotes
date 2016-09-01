@@ -90,14 +90,12 @@ angular.module('Shell')
 NotesData.$inject = ['$http', '$mdDialog', '$mdToast'];
 
 function NotesData($http, $mdDialog, $mdToast) {
-    var service = {
+    return {
         getAllNotes: getAllNotes,
         createNote : createNote,
         getNote    : getNote,
         updateNote : updateNote
     };
-
-    return service;
 
     function getAllNotes() {
         return $http.get('/api/notes');
