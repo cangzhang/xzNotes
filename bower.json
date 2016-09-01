@@ -1,0 +1,26 @@
+{
+  "name": "xzNites",
+  "homepage": "https://github.com/cangzhang/xzNotes",
+  "authors": [
+    "cangzhang <cangzan@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "web/assets/vendor/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-material": "^1.1.0",
+    "angular": "^1.5.8",
+    "angular-aria": "^1.5.8",
+    "angular-messages": "^1.5.8",
+    "angular-animate": "^1.5.8"
+  }
+}
