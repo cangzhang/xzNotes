@@ -2,7 +2,6 @@
 
 namespace notesBundle\Controller;
 
-use notesBundle\Repository\NoteRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -10,8 +9,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use notesBundle\Entity\Note;
-use notesBundle\Form\NoteType;
-use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * @Route("/api/notes")
