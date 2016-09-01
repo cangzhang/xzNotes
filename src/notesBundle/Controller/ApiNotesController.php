@@ -2,6 +2,7 @@
 
 namespace notesBundle\Controller;
 
+use notesBundle\Repository\NoteRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -44,10 +45,10 @@ class ApiNotesController extends Controller
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $userId = $user->id;
         $em = $this->getDoctrine()->getManager();
-        $userNote = $em->getRepository('notesBundle:Note')->findBy(
+        $userNote = $em->getRepository('notesBundle:Note')->findOneBy(
             array('userId' => $userId,
                 'id' => $noteId));
-        return $this->json($userNote[0]);
+        return $this->json($userNote);
     }
 
     /**
@@ -92,15 +93,15 @@ class ApiNotesController extends Controller
         $userId = $user->id;
 
         $em = $this->getDoctrine()->getManager();
-        $userNote = $em->getRepository('notesBundle:Note')->findBy(
+        $userNote = $em->getRepository('notesBundle:Note')->findOneBy(
             array('userId' => $userId,
                   'id' => $noteId));
         $noteData = json_decode($request->getContent(), true);
-        $userNote[0]->title = $noteData['title'];
-        $userNote[0]->content = $noteData['content'];
-        $userNote[0]->updateAt = new \DateTime();
+        $userNote->title = $noteData['title'];
+        $userNote->content = $noteData['content'];
+        $userNote->updateAt = new \DateTime();
 
-        $em->persist($userNote[0]);
+        $em->persist($userNote);
         $em->flush();
 
         $response = new Response();
