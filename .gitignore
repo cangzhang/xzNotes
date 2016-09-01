@@ -2,10 +2,9 @@
 /var/bootstrap.php.cache
 /var/logs
 /var/cache
-/var/sessions/dev
 /var/sessions
 /node_modules
-/vendor
 vendor
 /app/config/parameters.yml
 web/assets/
+/app/bootstrap.php.cache
