@@ -5,46 +5,48 @@
 {% endblock %}
 
 {% block body %}
-    <div class="editNote" ng-controller="ShellController">
-        <h1>Notes list</h1>
-        <div class="createNew">
-            <md-button class="md-icon-button md-primary addNote" aria-label="Create Note" ng-href="{{ path('note_new') }}">
-                <md-icon md-svg-src="content:add_circle_outline" title="Create Note"></md-icon>
-            </md-button>
+    <div class="container">
+        <div class="editNote" ng-controller="ShellController">
+            <h1>Notes list</h1>
+            <div class="createNew">
+                <md-button class="md-icon-button md-primary addNote" aria-label="Create Note" ng-href="{{ path('note_new') }}">
+                    <md-icon md-svg-src="content:add_circle_outline" title="Create Note"></md-icon>
+                </md-button>
+            </div>
+            <table>
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>User ID</th>
+                    <th>Title</th>
+                    <th>Content</th>
+                    <th>Create</th>
+                    <th>Update</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="note in allNotes">
+                    <td>{[{ note.id }]}</td>
+                    <td>{[{ note.userId }]}</td>
+                    <td>{[{ note.title }]}</td>
+                    <td>{[{ note.content }]}</td>
+                    <td>{[{ note.createAt.date | date:'MM/dd/yyyy @ h:mma' }]}</td>
+                    <td>{[{ note.updateAt.date | date:'MM/dd/yyyy @ h:mma' }]}</td>
+                    <td>
+                        <md-button ng-href="/note/{[{ note.id }]}/edit">
+                            <md-icon md-svg-src="editor:mode_edit" aria-label="Edit"></md-icon>
+                            Edit
+                        </md-button>
+                        <md-button>
+                            <md-icon md-svg-src="actions:delete" aria-label="Delete"></md-icon>
+                            Delete
+                        </md-button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
         </div>
-        <table>
-            <thead>
-            <tr>
-                <th>Id</th>
-                <th>User ID</th>
-                <th>Title</th>
-                <th>Content</th>
-                <th>Create</th>
-                <th>Update</th>
-                <th>Actions</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr ng-repeat="note in allNotes">
-                <td>{[{ note.id }]}</td>
-                <td>{[{ note.userId }]}</td>
-                <td>{[{ note.title }]}</td>
-                <td>{[{ note.content }]}</td>
-                <td>{[{ note.createAt.date | date:'MM/dd/yyyy @ h:mma' }]}</td>
-                <td>{[{ note.updateAt.date | date:'MM/dd/yyyy @ h:mma' }]}</td>
-                <td>
-                    <md-button ng-href="/note/{[{ note.id }]}/edit">
-                        <md-icon md-svg-src="editor:mode_edit" aria-label="Edit"></md-icon>
-                        Edit
-                    </md-button>
-                    <md-button>
-                        <md-icon md-svg-src="actions:delete" aria-label="Delete"></md-icon>
-                        Delete
-                    </md-button>
-                </td>
-            </tr>
-            </tbody>
-        </table>
     </div>
 
 {% endblock %}
