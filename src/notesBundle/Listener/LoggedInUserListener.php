@@ -21,21 +21,30 @@ class LoggedInUserListener
 	
 	public function onKernelRequest(GetResponseEvent $event)
 	{
-		if ($this->isLoggedIn() && $event->isMasterRequest())
-		{
+		$loggedUser = $this->getLoggedUser();
+		if ($loggedUser && $event->isMasterRequest()) {
 			$currentRoute = $event->getRequest()->attributes->get('_route');
-			if ($this->isAuthenticatedUserOnAnonymousPage($currentRoute))
-			{
-				$response = new RedirectResponse($this->router->generate('note_index'));
+			$redirectRoute = $this->getRedirectRoute($loggedUser, $currentRoute);
+			if ($redirectRoute) {
+				$response = new RedirectResponse($this->router->generate($redirectRoute));
 				$event->setResponse($response);
 			}
 		}
 	}
 	
-	private function isLoggedIn()
+	private function getLoggedUser()
 	{
 		$user = $this->tokenStorage->getToken()->getUser();
-		return $user instanceof User;
+		return $user instanceof User ? $user : null;
+	}
+	
+	private function getRedirectRoute($user, $currentRoute)
+	{
+		if ($this->isChangingPassword($user, $currentRoute)) {
+			return 'fos_user_change_password';
+		} elseif ($this->isAuthenticatedUserOnAnonymousPage($currentRoute)) {
+			return 'note_index';
+		}
 	}
 	
 	private function isAuthenticatedUserOnAnonymousPage($currentRoute)
@@ -44,6 +53,13 @@ class LoggedInUserListener
 			$currentRoute,
 			['fos_user_security_login', 'fos_user_resetting_request', 'fos_user_registration_register', 'fos_user_security_check']
 		);
+	}
+	
+	private function isChangingPassword($user, $currentRoute)
+	{
+		return $user->hasRole('ROLE_CHANGE_PASSWORD')
+		       && strpos($currentRoute, '_profiler') === false
+		       && !in_array($currentRoute, ['_wdt', 'fos_user_change_password']);
 	}
 	
 }
