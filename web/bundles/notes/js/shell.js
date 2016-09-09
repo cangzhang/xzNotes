@@ -28,9 +28,27 @@ function config($mdIconProvider) {
 angular.module('Shell')
     .controller('ShellController', ShellController);
 
-ShellController.$inject = ['$scope', 'NotesData', '$mdDialog', '$mdToast'];
+ShellController.$inject = ['$scope', 'NotesData', '$mdDialog', '$mdToast', '$mdSidenav'];
 
-function ShellController($scope, NotesData, $mdDialog, $mdToast, $mdMedia) {
+function ShellController($scope, NotesData, $mdDialog, $mdToast, $mdSidenav) {
+    var shell = this;
+
+    shell.toggleSideBar = buildToggler('left');
+
+    function buildToggler(componentId) {
+        return function () {
+            $mdSidenav(componentId).toggle();
+        }
+    }
+
+}
+
+angular.module('Shell')
+    .controller('NoteListController', NoteListController);
+
+NoteListController.$inject = ['$scope', 'NotesData', '$mdDialog', '$mdToast'];
+
+function NoteListController($scope, NotesData, $mdDialog, $mdToast) {
     NotesData.getAllNotes()
         .success(function (data) {
             $scope.allNotes = data;
@@ -60,9 +78,9 @@ function NoteEditController($scope, NotesData, $compile, $rootScope, $mdDialog, 
                         .position('top right')
                         .textContent('Note ' + $scope.formData.title + ' has been created.')
                         .hideDelay(1500))
-                        .then(function () {
-                            window.location = '/note';
-                        });
+                    .then(function () {
+                        window.location = '/note';
+                    });
             });
     };
     $scope.updateNote = function () {
@@ -90,14 +108,12 @@ angular.module('Shell')
 NotesData.$inject = ['$http', '$mdDialog', '$mdToast'];
 
 function NotesData($http, $mdDialog, $mdToast) {
-    var service = {
+    return {
         getAllNotes: getAllNotes,
         createNote : createNote,
         getNote    : getNote,
         updateNote : updateNote
     };
-
-    return service;
 
     function getAllNotes() {
         return $http.get('/api/notes');

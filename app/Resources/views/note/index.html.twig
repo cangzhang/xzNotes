@@ -6,10 +6,11 @@
 
 {% block body %}
     <div class="container">
-        <div class="editNote" ng-controller="ShellController">
+        <div class="editNote" ng-controller="NoteListController">
             <h1>Notes list</h1>
             <div class="createNew">
-                <md-button class="md-icon-button md-primary addNote" aria-label="Create Note" ng-href="{{ path('note_new') }}">
+                <md-button class="md-icon-button md-primary addNote" aria-label="Create Note"
+                           ng-href="{{ path('note_new') }}">
                     <md-icon md-svg-src="content:add_circle_outline" title="Create Note"></md-icon>
                 </md-button>
             </div>
@@ -49,4 +50,8 @@
         </div>
     </div>
 
+{% endblock %}
+
+{% block script %}
+    <script src="{{ asset('bundles/notes/js/notesList.controller.js') }}"></script>
 {% endblock %}

@@ -10,12 +10,37 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap/dist/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap/dist/css/bootstrap-theme.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendor/angular-material/angular-material.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/notes/css/shell.css') }}">
     <link rel="stylesheet" href="https://fonts.gmirror.org/css?family=RobotoDraft:300,400,500,700,400italic">
 
     {% block style %}
     {% endblock %}
 </head>
-<body>
+<body ng-controller="ShellController as shell">
+<md-toolbar class="topToolBar">
+    <div class="md-toolbar-tools">
+        <md-button class="md-icon-button" aria-label="Settings">
+            <md-icon class="toggleSideBarBtn" md-svg-icon="navigation:menu" ng-click="shell.toggleSideBar()"></md-icon>
+        </md-button>
+        <h2>
+            <span>{{ pageTitle }}</span>
+        </h2>
+        <span flex></span>
+    </div>
+</md-toolbar>
+
+<div class="sideBar" layout="column" ng-cloak>
+    <section layout="row" flex>
+        <md-sidenav class="md-sidenav-left" md-component-id="left" md-whiteframe="4">
+            <md-toolbar class="md-theme-indigo">
+                <h1 class="md-toolbar-tools">Disabled Backdrop</h1>
+            </md-toolbar>
+            <md-content layout-margin>
+            </md-content>
+        </md-sidenav>
+        <md-content flex layout-padding></md-content>
+    </section>
+</div>
 
 {% block body %}
 {% endblock %}

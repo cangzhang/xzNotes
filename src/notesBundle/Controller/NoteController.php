@@ -23,7 +23,8 @@ class NoteController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('note/index.html.twig');
+        $pageTitle = 'Notes List';
+        return $this->render('note/index.html.twig', array('pageTitle' => $pageTitle));
     }
 
     /**
@@ -34,7 +35,8 @@ class NoteController extends Controller
      */
     public function newAction()
     {
-        return $this->render('note/new.html.twig');
+        $pageTitle = 'Create Note';
+        return $this->render('note/new.html.twig', array('pageTitle' => $pageTitle));
     }
 
     /**
@@ -55,7 +57,8 @@ class NoteController extends Controller
      */
     public function updateNote()
     {
-        return $this->render('note/edit.html.twig');
+        $pageTitle = 'Edit Note';
+        return $this->render('note/edit.html.twig', array('pageTitle' => $pageTitle));
     }
 
 }
