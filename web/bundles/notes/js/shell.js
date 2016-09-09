@@ -76,7 +76,7 @@ function NoteEditController($scope, NotesData, $compile, $rootScope, $mdDialog, 
                     $mdToast.simple()
                         .parent(document.querySelectorAll('#editNote'))
                         .position('top right')
-                        .textContent('Note ' + $scope.formData.title + ' has been created.')
+                        .textContent('Note \'' + $scope.formData.title + '\' has been created.')
                         .hideDelay(1500))
                     .then(function () {
                         window.location = '/note';
