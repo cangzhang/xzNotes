@@ -5,48 +5,42 @@
 {% endblock %}
 
 {% block body %}
-    <div class="container">
+    <div class="container listContainer">
         <div class="editNote" ng-controller="NoteListController">
-            <h1>Notes list</h1>
             <div class="createNew">
                 <md-button class="md-icon-button md-primary addNote" aria-label="Create Note"
                            ng-href="{{ path('note_new') }}">
                     <md-icon md-svg-src="content:add_circle_outline" title="Create Note"></md-icon>
                 </md-button>
             </div>
-            <table>
-                <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>User ID</th>
-                    <th>Title</th>
-                    <th>Content</th>
-                    <th>Create</th>
-                    <th>Update</th>
-                    <th>Actions</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr ng-repeat="note in allNotes">
-                    <td>{[{ note.id }]}</td>
-                    <td>{[{ note.userId }]}</td>
-                    <td>{[{ note.title }]}</td>
-                    <td>{[{ note.content }]}</td>
-                    <td>{[{ note.createAt.date | date:'MM/dd/yyyy @ h:mma' }]}</td>
-                    <td>{[{ note.updateAt.date | date:'MM/dd/yyyy @ h:mma' }]}</td>
-                    <td>
-                        <md-button ng-href="/note/{[{ note.id }]}/edit">
-                            <md-icon md-svg-src="editor:mode_edit" aria-label="Edit"></md-icon>
-                            Edit
-                        </md-button>
-                        <md-button>
-                            <md-icon md-svg-src="actions:delete" aria-label="Delete"></md-icon>
-                            Delete
-                        </md-button>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+            <md-content class="md-padding" layout-xs="column">
+                <div flex-xs="" flex-gt-xs layout="column">
+                    <md-card ng-repeat="note in allNotes" id="note_{[{ note.id }]}">
+                        <md-card-title>
+                            <md-card-title-text layout="row" layout-align="space-between center">
+                                <span class="md-headline">{[{ note.title }]}</span>
+                                <h6 class="md-subhead">{[{ note.updateAt.date }]}</h6>
+                            </md-card-title-text>
+                        </md-card-title>
+                        <md-card-content>
+                            <div>{[{ note.content }]}</div>
+                        </md-card-content>
+                        <md-card-actions layout="row" layout-align="end center">
+                            {#<md-button class="md-icon-button" aria-label="Favorite">
+                                <md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
+                            </md-button>#}
+                            <md-button ng-href="/note/{[{ note.id }]}/edit">
+                                <md-icon class="md-icon-button editBtn" md-svg-src="editor:mode_edit" aria-label="Edit"></md-icon>
+                                Edit
+                            </md-button>
+                            <md-button>
+                                <md-icon class="md-icon-button deleteBtn" md-svg-src="actions:delete" aria-label="Delete"></md-icon>
+                                Delete
+                            </md-button>
+                        </md-card-actions>
+                    </md-card>
+                </div>
+            </md-content>
         </div>
     </div>
 

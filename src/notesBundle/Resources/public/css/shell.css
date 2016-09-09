@@ -1,3 +1,7 @@
+body {
+    background: #fafafa;
+}
+
 md-icon.toggleSideBarBtn {
     color: white;
 }
