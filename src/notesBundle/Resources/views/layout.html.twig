@@ -17,32 +17,33 @@
     {% endblock %}
 </head>
 <body ng-controller="ShellController as shell">
-<div ng-if="shell.ifOnNotePage()">
-    <md-toolbar class="topToolBar">
-        <div class="md-toolbar-tools">
-            <md-button class="md-icon-button" aria-label="Toggle">
-                <md-icon class="toggleSideBarBtn" md-svg-icon="navigation:menu" ng-click="shell.toggleSideBar()"></md-icon>
-            </md-button>
-            <h2>
-                <span></span>
-            </h2>
-            <span flex></span>
-        </div>
-    </md-toolbar>
+{% if pageTitle is defined %}
+        <md-toolbar class="topToolBar">
+            <div class="md-toolbar-tools">
+                <md-button class="md-icon-button" aria-label="Toggle">
+                    <md-icon class="toggleSideBarBtn" md-svg-icon="navigation:menu"
+                             ng-click="shell.toggleSideBar()"></md-icon>
+                </md-button>
+                <h2>
+                    <span>{{ pageTitle }}</span>
+                </h2>
+                <span flex></span>
+            </div>
+        </md-toolbar>
 
-    <div class="sideBar" layout="column" ng-cloak>
-        <section layout="row" flex>
-            <md-sidenav class="md-sidenav-left" md-component-id="left" md-whiteframe="4">
-                <md-toolbar class="md-theme-indigo">
-                    <h1 class="md-toolbar-tools">Disabled Backdrop</h1>
-                </md-toolbar>
-                <md-content layout-margin>
-                </md-content>
-            </md-sidenav>
-            <md-content flex layout-padding></md-content>
-        </section>
-    </div>
-</div>
+        <div class="sideBar" layout="column" ng-cloak>
+            <section layout="row" flex>
+                <md-sidenav class="md-sidenav-left" md-component-id="left" md-whiteframe="4">
+                    <md-toolbar class="md-theme-indigo">
+                        <h1 class="md-toolbar-tools">Disabled Backdrop</h1>
+                    </md-toolbar>
+                    <md-content layout-margin>
+                    </md-content>
+                </md-sidenav>
+                <md-content flex layout-padding></md-content>
+            </section>
+        </div>
+{% endif %}
 
 {% block body %}
 {% endblock %}
