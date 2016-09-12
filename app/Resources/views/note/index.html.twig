@@ -6,13 +6,12 @@
 
 {% block body %}
     <div class="container listContainer">
-        <div class="editNote" ng-controller="NoteListController">
-            <div class="createNew">
-                <md-button class="md-icon-button md-primary addNote" aria-label="Create Note"
-                           ng-href="{{ path('note_new') }}">
+        <div class="editNote" ng-controller="NoteListController as list">
+            {#<div class="createNew">
+                <md-button class="md-icon-button md-primary addNote" aria-label="Create Note">
                     <md-icon md-svg-src="content:add_circle_outline" title="Create Note"></md-icon>
                 </md-button>
-            </div>
+            </div>#}
             <md-content class="md-padding" layout-xs="column">
                 <div flex-xs="" flex-gt-xs layout="column">
                     <md-card ng-repeat="note in allNotes" id="note_{[{ note.id }]}">
@@ -39,6 +38,25 @@
                 </div>
             </md-content>
         </div>
+    </div>
+
+    <div layout="row" layout-align="end center">
+        <md-fab-speed-dial md-open="false" md-direction="up" class="floatFAB md-scale">
+            <md-fab-trigger>
+                <md-button aria-label="menu" class="md-fab md-primary">
+                    <md-icon md-svg-src="content:add"></md-icon>
+                </md-button>
+            </md-fab-trigger>
+
+            <md-fab-actions>
+                <md-button aria-label="Add Note" class="md-fab md-raised md-mini" ng-href="{{ path('note_new') }}">
+                    <md-icon md-svg-src="actions:note_add" aria-label="Note" title="Create New Note"></md-icon>
+                </md-button>
+                <md-button aria-label="Add ToDo" class="md-fab md-raised md-mini">
+                    <md-icon md-svg-src="av:playlist_add" aria-label="ToDo"></md-icon>
+                </md-button>
+            </md-fab-actions>
+        </md-fab-speed-dial>
     </div>
 
 {% endblock %}

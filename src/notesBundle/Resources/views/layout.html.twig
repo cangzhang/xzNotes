@@ -28,6 +28,18 @@
                     <span>{{ pageTitle }}</span>
                 </h2>
                 <span flex></span>
+                <div layout="column" flex="33" flex-sm="100" flex-xs="100" layout-align="center center">
+                    <md-menu md-offset="0 -7">
+                        <md-button aria-label="Open menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                            <md-icon md-menu-origin md-svg-icon="navigation:arrow_drop_down_circle"></md-icon>
+                        </md-button>
+                        <md-menu-content width="4">
+                            <md-menu-item>
+                                <md-button ng-href="{{ path('fos_user_security_logout') }}"> <span md-menu-align-target>Log Out</span></md-button>
+                            </md-menu-item>
+                        </md-menu-content>
+                    </md-menu>
+                </div>
             </div>
         </md-toolbar>
 

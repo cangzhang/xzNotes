@@ -33,10 +33,6 @@ ShellController.$inject = ['$scope', 'NotesData', '$mdDialog', '$mdToast', '$mdS
 function ShellController($scope, NotesData, $mdDialog, $mdToast, $mdSidenav) {
     var shell = this;
 
-    shell.ifOnNotePage = function () {
-        return window.location.pathname.split('/')[1] == 'note';
-    };
-
     shell.toggleSideBar = buildToggler('left');
 
     function buildToggler(componentId) {
@@ -53,6 +49,8 @@ angular.module('Shell')
 NoteListController.$inject = ['$scope', 'NotesData', '$mdDialog', '$mdToast'];
 
 function NoteListController($scope, NotesData, $mdDialog, $mdToast) {
+    var list = this;
+
     NotesData.getAllNotes()
         .success(function (data) {
             $scope.allNotes = data;
