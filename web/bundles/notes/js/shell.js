@@ -51,9 +51,25 @@ NoteListController.$inject = ['$scope', 'NotesData', '$mdDialog', '$mdToast'];
 function NoteListController($scope, NotesData, $mdDialog, $mdToast) {
     var list = this;
 
+    list.removeNote = function (note) {
+        NotesData.removeNote(note.id)
+            .success(function (data) {
+                $mdToast.show(
+                    $mdToast.simple()
+                        .parent(document.querySelectorAll('#editNote'))
+                        .position('bottom left')
+                        .textContent('Note \'' + note.title + '\' has been deleted.')
+                        .hideDelay(1500))
+                    .then(function () {
+                        var index = list.allNotes.indexOf(note);
+                        list.allNotes.splice(index, 1);
+                    });
+            });
+    };
+
     NotesData.getAllNotes()
         .success(function (data) {
-            $scope.allNotes = data;
+            list.allNotes = data;
         });
 }
 
@@ -114,8 +130,16 @@ function NotesData($http, $mdDialog, $mdToast) {
         getAllNotes: getAllNotes,
         createNote : createNote,
         getNote    : getNote,
-        updateNote : updateNote
+        updateNote : updateNote,
+        removeNote : removeNote
     };
+
+    function removeNote(noteId) {
+        return $http({
+            method: "delete",
+            url: '/api/notes/' + noteId + '/delete'
+        });
+    }
 
     function getAllNotes() {
         return $http.get('/api/notes');

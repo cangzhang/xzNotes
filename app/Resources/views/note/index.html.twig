@@ -14,7 +14,7 @@
             </div>#}
             <md-content class="md-padding" layout-xs="column">
                 <div flex-xs="" flex-gt-xs layout="column">
-                    <md-card ng-repeat="note in allNotes" id="note_{[{ note.id }]}">
+                    <md-card ng-repeat="note in list.allNotes" id="note_{[{ note.id }]}">
                         <md-card-title>
                             <md-card-title-text layout="row" layout-align="space-between center">
                                 <span class="md-headline">{[{ note.title }]}</span>
@@ -29,7 +29,7 @@
                                 <md-icon class="md-icon-button editBtn" md-svg-src="editor:mode_edit" aria-label="Edit"></md-icon>
                                 Edit
                             </md-button>
-                            <md-button>
+                            <md-button ng-click="list.removeNote(note)">
                                 <md-icon class="md-icon-button deleteBtn" md-svg-src="actions:delete" aria-label="Delete"></md-icon>
                                 Delete
                             </md-button>

@@ -107,4 +107,29 @@ class ApiNotesController extends Controller
         return $response;
     }
 
+    /**
+     * @Route("/{noteId}/delete")
+     * @Method("DELETE")
+     * @param $noteId
+     * @return Response
+     */
+    public function destroy($noteId)
+    {
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $userId = $user->id;
+
+        $em = $this->getDoctrine()->getManager();
+        $userNote = $em->getRepository('notesBundle:Note')->findOneBy(
+            array('userId' => $userId,
+                  'id' => $noteId));
+
+        $em->remove($userNote);
+        $em->flush();
+
+        $response = new Response();
+        $response->setStatusCode(Response::HTTP_OK);
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
+    }
+
 }
