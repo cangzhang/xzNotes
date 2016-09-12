@@ -33,6 +33,10 @@ ShellController.$inject = ['$scope', 'NotesData', '$mdDialog', '$mdToast', '$mdS
 function ShellController($scope, NotesData, $mdDialog, $mdToast, $mdSidenav) {
     var shell = this;
 
+    shell.ifOnNotePage = function () {
+        return window.location.pathname.split('/')[1] == 'note';
+    };
+
     shell.toggleSideBar = buildToggler('left');
 
     function buildToggler(componentId) {

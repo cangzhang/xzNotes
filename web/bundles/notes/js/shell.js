@@ -33,6 +33,10 @@ ShellController.$inject = ['$scope', 'NotesData', '$mdDialog', '$mdToast', '$mdS
 function ShellController($scope, NotesData, $mdDialog, $mdToast, $mdSidenav) {
     var shell = this;
 
+    shell.ifOnNotePage = function () {
+        return window.location.pathname.split('/')[1] == 'note';
+    };
+
     shell.toggleSideBar = buildToggler('left');
 
     function buildToggler(componentId) {
@@ -92,7 +96,7 @@ function NoteEditController($scope, NotesData, $compile, $rootScope, $mdDialog, 
                     $mdToast.simple()
                         .parent(document.querySelectorAll('#editNote'))
                         .position('top right')
-                        .textContent('Note ' + $scope.formData.title + ' has been updated.')
+                        .textContent('Note \'' + $scope.formData.title + '\' has been updated.')
                         .hideDelay(1500))
                     .then(function () {
                         window.location = '/note';

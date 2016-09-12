@@ -26,9 +26,6 @@
                             <div>{[{ note.content }]}</div>
                         </md-card-content>
                         <md-card-actions layout="row" layout-align="end center">
-                            {#<md-button class="md-icon-button" aria-label="Favorite">
-                                <md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
-                            </md-button>#}
                             <md-button ng-href="/note/{[{ note.id }]}/edit">
                                 <md-icon class="md-icon-button editBtn" md-svg-src="editor:mode_edit" aria-label="Edit"></md-icon>
                                 Edit
