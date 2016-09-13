@@ -37,7 +37,7 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
-    cache:            true
+    cache:            false
 
 # Doctrine Configuration
 doctrine:
