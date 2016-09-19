@@ -3,5 +3,13 @@ notes:
     type:     annotation
     prefix:   /
 
+#notes_user:
+#    type: rest
+#    prefix: /api
+#    resource: "@notesBundle/Resources/config/users_routes.yml"
+
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+fos_oauth_server_token:
+    resource: "@FOSOAuthServerBundle/Resources/config/routing/token.xml"

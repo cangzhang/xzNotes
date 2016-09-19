@@ -19,6 +19,15 @@ security:
             id: fos_user.user_provider.username
 
     firewalls:
+        oauth_token:                                   # Everyone can access the access token URL.
+                    pattern: ^/oauth/v2/token
+                    security: false
+        api:
+            pattern: ^/                                # All URLs are protected
+            fos_oauth: true                            # OAuth2 protected resource
+            stateless: true                            # Do no set session cookies
+            anonymous: ~                           # Anonymous access is not allowed
+
         # disables authentication for assets and the profiler, adapt it according to your needs
         public:
             pattern:   ^/
