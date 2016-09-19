@@ -1,5 +1,0 @@
-users:
-    type:     rest
-    prefix:   /v1
-    host:     localhost
-    resource: notesBundle/Controller/UserController.php

@@ -3,10 +3,10 @@ notes:
     type:     annotation
     prefix:   /
 
-#notes_user:
-#    type: rest
-#    prefix: /api
-#    resource: "@notesBundle/Resources/config/users_routes.yml"
+notes_user:
+    type: rest
+    prefix: /api
+    resource: "@notesBundle/Resources/config/routes.yml"
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
