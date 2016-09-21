@@ -32,6 +32,8 @@ framework:
     fragments:       ~
     http_method_override: true
     assets: ~
+    serializer:
+        enabled: true
 
 # Twig Configuration
 twig:
@@ -69,6 +71,24 @@ swiftmailer:
     spool:     { type: memory }
 
 fos_user:
-    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
-    firewall_name: main
+    db_driver: orm                       # other valid values are 'mongodb', 'couchdb' and 'propel'
+    firewall_name: api                   # Seems to be used when registering user/reseting password,
+                                         # but since there is no "login", as so it seems to be useless in
+                                         # our particular context, but still required by "FOSUserBundle"
     user_class: notesBundle\Entity\User
+
+fos_rest:
+    routing_loader:
+        default_format: json    # All responses should be JSON formated
+        include_format: false   # We do not include format in request, so that all responses
+                                # will eventually be JSON formated
+
+fos_oauth_server:
+    db_driver:           orm
+    client_class:        notesBundle\Entity\Client
+    access_token_class:  notesBundle\Entity\AccessToken
+    refresh_token_class: notesBundle\Entity\RefreshToken
+    auth_code_class:     notesBundle\Entity\AuthCode
+    service:
+        user_provider: fos_user.user_manager             # This property will be used when valid credentials
+                                                         # are given to load the user upon access token creation

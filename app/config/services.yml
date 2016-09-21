@@ -11,3 +11,10 @@ services:
         arguments:
             - "@security.token_storage"
             - "@router"
+
+    notes.security.authentication_handler:
+            class: notesBundle\Handler\AuthenticationHandler
+            public: false
+            arguments:
+                - "@router"
+                - "@session"

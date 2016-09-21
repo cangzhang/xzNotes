@@ -6,6 +6,10 @@ security:
             algorithm: bcrypt
             cost: 10
 
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: ROLE_ADMIN
+
     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
     providers:
         in_memory:
@@ -15,6 +19,15 @@ security:
             id: fos_user.user_provider.username
 
     firewalls:
+        oauth_token:                                   # Everyone can access the access token URL.
+            pattern: ^/oauth/v2/token
+            security: false
+        api:
+            pattern: ^/                                # All URLs are protected
+            fos_oauth: true                            # OAuth2 protected resource
+            stateless: true                            # Do no set session cookies
+            anonymous: ~                           # Anonymous access is not allowed
+
         # disables authentication for assets and the profiler, adapt it according to your needs
         public:
             pattern:   ^/
@@ -23,6 +36,10 @@ security:
               check_path: fos_user_security_check
               provider: fos_userbundle
               default_target_path: note_index
+              failure_path: fos_user_security_login
+              use_referer: true
+              success_handler: notes.security.authentication_handler
+              failure_handler: notes.security.authentication_handler
             anonymous: true
             logout:
               path: fos_user_security_logout
@@ -44,9 +61,13 @@ security:
                 login_path: fos_user_security_login
                 check_path: fos_user_security_check
                 default_target_path: note_index
+                success_handler: notes.security.authentication_handler
+                failure_handler: notes.security.authentication_handler
             logout: true
 
     access_control:
-#            - { path: ^/, role: ROLE_USER }
             - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+            - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+            - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+            - { path: ^/admin/, role: ROLE_ADMIN }
             - { path: ^/note/, role: IS_AUTHENTICATED_FULLY }

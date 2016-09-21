@@ -7,25 +7,27 @@
 {% endblock %}
 
 {% block body %}
-    <hgroup>
-        <h1>XZNOTES</h1>
-        <h3>Inspire your mind</h3>
-    </hgroup>
-    <form action="{{ path("fos_user_security_check") }}" method="post">
-        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
-        <div class="group" flex>
-            <md-input-container class="loginInput" flex>
-                <label>Username</label>
-                <input id="username" name="_username" required value="{{ last_username }}">
-            </md-input-container>
-        </div>
-        <div class="group">
-            <md-input-container class="loginInput" flex>
-                <label for="password">Password</label>
-                <input type="password" id="password" name="_password" required="required">
-            </md-input-container>
-        </div>
-        <md-checkbox for="remember_me" aria-label="Remember me">Remember me</md-checkbox>
-        <md-button class="md-raised md-primary" type="submit" id="_submit" name="_submit">Log in</md-button>
-    </form>
+    <div ng-controller="LoginController as login">
+        <hgroup>
+            <h1>XZNOTES</h1>
+            <h3>Inspire your mind</h3>
+        </hgroup>
+        <form action="{{ path("fos_user_security_check") }}" method="post" id="loginForm">
+            <input class="csrf_token" type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
+            <div class="group" flex>
+                <md-input-container class="loginInput" flex>
+                    <label>Username</label>
+                    <input id="username" name="_username" required ng-model="login.form._username">
+                </md-input-container>
+            </div>
+            <div class="group">
+                <md-input-container class="loginInput" flex>
+                    <label for="password">Password</label>
+                    <input type="password" name="_password" required ng-model="login.form._password">
+                </md-input-container>
+            </div>
+            <md-checkbox for="remember_me" aria-label="Remember me">Remember me</md-checkbox>
+            <md-button class="md-raised md-primary" ng-click="login.confirm()">Log in</md-button>
+        </form>
+    </div>
 {% endblock %}
