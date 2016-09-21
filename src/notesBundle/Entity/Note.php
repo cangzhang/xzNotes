@@ -3,6 +3,7 @@
 namespace notesBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\Expose;
 
 /**
  * Note
@@ -18,36 +19,42 @@ class Note
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Expose
      */
     public $id;
 
     /**
      * @var int
      * @ORM\Column(name="userId", type="integer")
+     * @Expose
      */
     public $userId;
 
     /**
      * @var string
      * @ORM\Column(name="title", type="string")
+     * @Expose
      */
     public $title;
 
     /**
      * @var string
      * @ORM\Column(name="content", type="string")
+     * @Expose
      */
     public $content;
 
     /**
      * @var \DateTime
      * @ORM\Column(name="createAt", type="datetime")
+     * @Expose
      */
     public $createAt;
 
     /**
      * @var \DateTime
      * @ORM\Column(name="updateAt", type="datetime")
+     * @Expose
      */
     public $updateAt;
 

@@ -3,5 +3,16 @@ notes:
     type:     annotation
     prefix:   /
 
-fos_user:
-    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+#fos_user:
+#    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+#api_login_check:
+#    path: /api/login_check
+
+rest :
+  type : rest
+  resource : "@FOSUserBundle/Resources/config/routing/all.xml"
+  prefix : /api
+
+fos_oauth_server_token:
+    resource: "@FOSOAuthServerBundle/Resources/config/routing/token.xml"

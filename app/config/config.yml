@@ -73,3 +73,40 @@ fos_user:
     db_driver: orm
     firewall_name: main
     user_class: notesBundle\Entity\User
+
+lexik_jwt_authentication:
+    private_key_path: "%jwt_private_key_path%"
+    public_key_path:  "%jwt_public_key_path%"
+    pass_phrase:      "%jwt_key_pass_phrase%"
+    token_ttl:        "%jwt_token_ttl%"
+
+fos_rest:
+    param_fetcher_listener: true
+    body_listener: true
+    format_listener: true
+    view:
+        view_response_listener: 'force'
+        formats:
+            xml: true
+            json : true
+        templating_formats:
+            html: true
+        force_redirects:
+            html: true
+        failed_validation: HTTP_BAD_REQUEST
+        default_engine: twig
+    routing_loader:
+        default_format: json
+
+fos_oauth_server:
+    db_driver:           orm
+    client_class:        notesBundle\Entity\Client
+    access_token_class:  notesBundle\Entity\AccessToken
+    refresh_token_class: notesBundle\Entity\RefreshToken
+    auth_code_class:     notesBundle\Entity\AuthCode
+    service:
+        user_provider: fos_user.user_manager             # This property will be used when valid credentials
+                                                         # are given to load the user upon access token creation
+
+jms_serializer:
+    enable_short_alias: false

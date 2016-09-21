@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use FOS\RestBundle\Controller\FOSRestController;
 use notesBundle\Entity\User;
 use notesBundle\Form\UserType;
 
@@ -14,7 +15,7 @@ use notesBundle\Form\UserType;
  *
  * @Route("/user")
  */
-class UserController extends Controller
+class UserController extends FOSRestController
 {
     /**
      * Lists all User entities.

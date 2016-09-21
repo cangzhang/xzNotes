@@ -10,3 +10,7 @@ parameters:
     mailer_user: null
     mailer_password: null
     secret: 66dc6e7e8723149ddf0f3d9748232e5d84bc6048
+    jwt_private_key_path: var/jwt/private.pem
+    jwt_public_key_path: var/jwt/public.pem
+    jwt_key_pass_phrase: xznotes
+    jwt_token_ttl: 3600
